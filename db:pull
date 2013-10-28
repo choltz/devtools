@@ -1,0 +1,6 @@
+require "fog"
+
+#!/usr/bin/env ruby
+
+
+puts "buh"
