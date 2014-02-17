@@ -1,6 +1,8 @@
-require "fog"
-
 #!/usr/bin/env ruby
+
+require "rubygems"
+require 'bundler/setup'
+require "fog"
 
 
 puts "buh"
