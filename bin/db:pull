@@ -1,0 +1,21 @@
+#/bin/sh
+#
+# Shell script to set up RVM with the correct version of ruby an d then run the
+# db pull script
+
+# Get the current path
+cd "$(dirname "$(readlink -f "$0")")"
+
+# Jump through hoops to get RVM to recognize the correct version of ruby
+cd ../
+if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
+  source "$HOME/.rvm/scripts/rvm"
+elif [[ -s "/usr/local/rvm/scripts/rvm" ]] ; then
+  source "/usr/local/rvm/scripts/rvm"
+else
+  printf $HOME
+  printf "ERROR: An RVM installation was not found.\n"
+fi
+cd ./
+
+ruby db_pull.rb
