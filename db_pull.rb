@@ -28,7 +28,8 @@ File.open("backups/#{file_name}", 'w') do |local_file|
   files.get(latest_file.key) do |chunk, remaining, total|
     local_file.write chunk
 
-    percent = (100 - (remaining.to_f / total.to_f * 100)).round(2)
+    percent = (100 - (remaining.to_f / total.to_f * 100))
+
     progress.set(percent)
   end
 end
