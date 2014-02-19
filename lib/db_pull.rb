@@ -33,3 +33,5 @@ File.open("backups/#{file_name}", 'w') do |local_file|
     progress.set(percent)
   end
 end
+
+puts "" # move to the next line in the terminal
