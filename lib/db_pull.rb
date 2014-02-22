@@ -4,8 +4,6 @@ require 'fog'
 require 'progressbar'
 require 'yaml'
 
-bucket = "mysql-05-backup"
-
 # Connect to S3
 config     = YAML.load_file 'config/s3.yml'
 connection = Fog::Storage.new(
@@ -15,7 +13,7 @@ connection = Fog::Storage.new(
 )
 
 # find the latest file in the bucket
-files       = connection.directories.get(bucket).files
+files       = connection.directories.get( config["bucket"] ).files
 latest_file = files.sort{|a,b| b.last_modified <=> a.last_modified}.first
 file_name   = latest_file.key.scan(/[^\/$]+$/).first
 
