@@ -3,6 +3,7 @@ require 'bundler/setup'
 require 'fog'
 require 'progressbar'
 require 'yaml'
+# require 'debugger'
 
 # Connect to S3
 config     = YAML.load_file 'config/s3.yml'
