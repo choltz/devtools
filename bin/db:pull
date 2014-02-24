@@ -18,4 +18,4 @@ else
 fi
 cd ./
 
-ruby lib/db_pull.rb
+ruby lib/db_pull/db_pull.rb
