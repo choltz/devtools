@@ -1,2 +1,3 @@
 config/s3.yml
 backups/*.gz
+coverage
