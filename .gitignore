@@ -1,3 +1,4 @@
 config/s3.yml
 backups/*.gz
+backups/*.sql
 coverage
