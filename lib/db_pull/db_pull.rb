@@ -2,20 +2,21 @@ require 'rubygems'
 require 'bundler/setup'
 require 'fog'
 require 'progressbar'
-require 'yaml'
+require_relative '../yaml_config'
 # require 'debugger'
 
 class Pull
   def initialize
     # Connect to S3
-    s3_config      = YAML.load_file 'config/s3.yml'
+    s3_config      = YamlConfig.new 'config/s3.yml'
+
     @s3_connection = Fog::Storage.new(
       :provider                 => 'AWS',
-      :aws_access_key_id        => s3_config['key'],
-      :aws_secret_access_key    => s3_config['secret']
+      :aws_access_key_id        => s3_config.key,
+      :aws_secret_access_key    => s3_config.secret
     )
 
-    @bucket = s3_config["bucket"]
+    @bucket = s3_config.bucket
   end
 
   def call
