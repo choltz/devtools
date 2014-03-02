@@ -5,6 +5,7 @@ require "ostruct"
 class YamlConfig < OpenStruct
   def initialize(path)
     yaml = YAML.load_file path
+
     super(yaml)
   end
 end
