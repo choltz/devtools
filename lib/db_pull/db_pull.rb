@@ -6,7 +6,6 @@ require_relative "../remote"
 
 class Pull
   def initialize
-    # Connect to S3
     @remote = Remote.new 'config/s3.yml'
     @bucket = @remote.bucket
   end
