@@ -1,7 +1,7 @@
 require 'fog'
 require_relative 'yaml_config'
 
-# Public: Wrapper class around Fog gem S3 functionality. Only
+# Public: Wrapper class around Fog gem S3 functionality.
 class Remote < OpenStruct
   attr_reader :connection
 

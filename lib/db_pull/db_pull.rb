@@ -2,8 +2,9 @@ require 'rubygems'
 require 'bundler/setup'
 require 'progressbar'
 require 'debugger'
-require_relative "../remote"
+require_relative '../remote'
 
+# Public: Download the latest db image from S3 and store it locally
 class Pull
   def initialize
     @remote = Remote.new 'config/s3.yml'
@@ -24,7 +25,7 @@ class Pull
       end
     end
 
-    puts "" # move to the next line in the terminal
+    puts '' # move to the next line in the terminal
   end
 end
 
