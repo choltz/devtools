@@ -1,6 +1,6 @@
 #/bin/sh
 #
-# Shell script to set up RVM with the correct version of ruby an d then run the
+# Shell script to set up RVM with the correct version of ruby and run the
 # db pull script
 
 # Get the current path
