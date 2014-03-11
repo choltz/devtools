@@ -5,10 +5,10 @@ require_relative 'yaml_config'
 class Remote < OpenStruct
   attr_reader :connection
 
-  def initialize(path)
+  def initialize(path, data_store = Fog::Storage)
     config      = YamlConfig.new path
 
-    @connection = Fog::Storage.new(
+    @connection = data_store.new(
       provider:              'AWS',
       aws_access_key_id:     config.key,
       aws_secret_access_key: config.secret
