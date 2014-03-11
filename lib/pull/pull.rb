@@ -28,5 +28,3 @@ class Pull
     puts '' # move to the next line in the terminal
   end
 end
-
-Pull.new.call
