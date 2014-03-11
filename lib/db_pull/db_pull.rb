@@ -1,8 +1,8 @@
-require 'rubygems'
-require 'bundler/setup'
-require 'progressbar'
-require 'debugger'
+require          'rubygems'
+require          'bundler/setup'
+require          'debugger'
 require_relative '../remote'
+require_relative '../progress'
 
 # Public: Download the latest db image from S3 and store it locally
 class Pull
