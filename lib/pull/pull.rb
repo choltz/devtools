@@ -7,8 +7,9 @@ require_relative '../progress'
 # Public: Download the latest db image from S3 and store it locally
 class Pull
   def initialize
-    @remote = Remote.new 'config/s3.yml'
-    @bucket = @remote.bucket
+    @remote   = Remote.new 'config/s3.yml'
+    @bucket   = @remote.bucket
+    @progress = Progress.new
   end
 
   def call
