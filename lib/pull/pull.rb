@@ -15,10 +15,13 @@ class Pull
   def call
     progress          = ProgressBar.new 'Downloading', 100
     progress.bar_mark = '='
+    file              = @remote.latest_file_name(/tatango/)
+
+    puts "Downloading #{@remote.latest_file_name(/tatango/)}"
 
     # Stream the remote file and write locally in chunks
-    File.open("backups/#{@remote.latest_file_name}", 'w') do |local_file|
-      @remote.read_latest_file do |chunk, remaining, total|
+    File.open("backups/#{file}", 'w') do |local_file|
+      @remote.read_latest_file(/tatango/) do |chunk, remaining, total|
         local_file.write chunk
 
         percent = (100 - (remaining.to_f / total.to_f * 100))

@@ -18,27 +18,40 @@ class Remote < OpenStruct
     super(YAML.load_file path)
   end
 
-  def latest_file_name
-    file_name latest_file
+  def latest_file_name(pattern)
+    file_name latest_file(pattern)
   end
 
-  def read_latest_file
-    file_list.get(latest_file.key) do |chunk, remaining, total|
+  def read_latest_file(pattern)
+    @connection.directories.get(bucket).files.get(latest_file(pattern).key) do |chunk, remaining, total|
       yield chunk, remaining, total
     end
   end
 
   private
 
+  # Internal: Build a list of all files in the bucket; cache the results
   def file_list
-    @connection.directories.get(bucket).files
+    return @file_list_cache unless @file_list_cache.nil?
+
+    files = @connection.directories.get(bucket).files
+    list  = []
+    list << files
+
+    while files.length == 1000
+      files = @connection.directories.get(bucket).files.all( :marker => files.last.key )
+      list << files
+    end
+
+    @file_list_cache = list.flatten
+    @file_list_cache
   end
 
   def file_name(file)
     file.key.scan(/[^\/$]+$/).first
   end
 
-  def latest_file
-    file_list.sort { |a,b| b.last_modified <=> a.last_modified }.first
+  def latest_file(pattern)
+    file_list.select { |f| f.key =~ pattern }.sort { |a,b| b.last_modified <=> a.last_modified }.first
   end
 end
